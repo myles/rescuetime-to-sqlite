@@ -8,7 +8,7 @@ from sqlite_utils.db import Database, Table
 from . import client
 
 
-def open_database(db_file_path) -> Database:
+def open_database(db_file_path: str) -> Database:
     """
     Open the RescueTime SQLite database.
     """
@@ -78,8 +78,8 @@ def transform_analytic_data_row(
     row: Dict[str, Union[str, int]],
 ):
     """
-    Transformer a RescueTime Analytic Data, so it can be safely saved to the
-    SQLite database.
+    Transformer a RescueTime Analytic Data row, so it can be safely saved to
+    the SQLite database.
     """
     row["date"] = row.pop("Date")
     row["seconds_spent"] = row.pop("Time Spent (seconds)")
@@ -105,6 +105,18 @@ def transform_analytic_data_row(
         del row[key]
 
 
+def convert_analytic_data_to_rows(
+    analytic_data: client.AnalyticData
+) -> List[Dict[str, Union[str, int]]]:
+    """
+    Transformer a RescueTime Analytic Data response, so it can be easily
+    transformed and saved to the SQLite database.
+    """
+    row_headers = analytic_data["row_headers"]
+    rows = analytic_data["rows"]
+    return [dict(zip(row_headers, row)) for row in rows]
+
+
 def save_analytic_data(
     db: Database,
     analytic_data: client.AnalyticData,
@@ -115,9 +127,7 @@ def save_analytic_data(
     build_database(db)
     analytics_table = get_table("analytics", db=db)
 
-    row_headers = analytic_data["row_headers"]
-    rows = analytic_data["rows"]
-    analytic_data_rows = [dict(zip(row_headers, row)) for row in rows]
+    analytic_data_rows = convert_analytic_data_to_rows(analytic_data)
 
     for row in analytic_data_rows:
         transform_analytic_data_row(row)

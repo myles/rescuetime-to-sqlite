@@ -61,7 +61,7 @@ def auth(auth):
     default="auth.json",
     help="Path to auth.json token file",
 )
-@click.option("--source-type", type=click.Choice(RestrictSourceType))
+@click.option("--source-type", type=click.Choice(list(RestrictSourceType)))
 def analytic_data(db_path, auth, source_type):
     """
     Save RescueTime analytic data.
