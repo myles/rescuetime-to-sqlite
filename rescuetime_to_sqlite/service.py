@@ -106,7 +106,7 @@ def transform_analytic_data_row(
 
 
 def convert_analytic_data_to_rows(
-    analytic_data: client.AnalyticData
+    analytic_data: client.AnalyticData,
 ) -> List[Dict[str, Union[str, int]]]:
     """
     Transformer a RescueTime Analytic Data response, so it can be easily

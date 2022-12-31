@@ -1,4 +1,11 @@
-ANALYTIC_DATA_ROW_ONE = ["2020-01-12T00:00:00", 629, 1, "Slack", "Communications", 0]
+ANALYTIC_DATA_ROW_ONE = [
+    "2020-01-12T00:00:00",
+    629,
+    1,
+    "Slack",
+    "Communications",
+    0,
+]
 
 CONVERTED_ANALYTIC_DATA_ROW_ONE = {
     "Date": ANALYTIC_DATA_ROW_ONE[0],
@@ -15,7 +22,7 @@ TRANSFORMED_ANALYTIC_DATA_ROW_ONE = {
     "number_of_people": CONVERTED_ANALYTIC_DATA_ROW_ONE["Number of People"],
     "activity": CONVERTED_ANALYTIC_DATA_ROW_ONE["Activity"],
     "category": CONVERTED_ANALYTIC_DATA_ROW_ONE["Category"],
-    "productivity": CONVERTED_ANALYTIC_DATA_ROW_ONE["Productivity"]
+    "productivity": CONVERTED_ANALYTIC_DATA_ROW_ONE["Productivity"],
 }
 
 ANALYTIC_DATA = {
