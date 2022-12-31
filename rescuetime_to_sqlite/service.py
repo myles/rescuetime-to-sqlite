@@ -117,11 +117,11 @@ def save_analytic_data(
 
     row_headers = analytic_data["row_headers"]
     rows = analytic_data["rows"]
-    analytic_data_rows = [
-        dict(zip(row_headers, row)) for row in rows
-    ]
+    analytic_data_rows = [dict(zip(row_headers, row)) for row in rows]
 
     for row in analytic_data_rows:
         transform_analytic_data_row(row)
 
-    analytics_table.insert_all(analytic_data_rows, pk="id", alter=True, replace=True)
+    analytics_table.insert_all(
+        analytic_data_rows, pk="id", alter=True, replace=True
+    )
