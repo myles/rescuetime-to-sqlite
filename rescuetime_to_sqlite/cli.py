@@ -77,7 +77,6 @@ def analytic_data(db_path, auth, source_type):
     )
 
 
-
 @cli.command()
 @click.argument(
     "db_path",
