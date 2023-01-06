@@ -75,3 +75,32 @@ def analytic_data(db_path, auth, source_type):
             client, source_type=source_type
         ),
     )
+
+
+
+@cli.command()
+@click.argument(
+    "db_path",
+    type=click.Path(file_okay=True, dir_okay=False, allow_dash=False),
+    required=True,
+)
+@click.option(
+    "-a",
+    "--auth",
+    type=click.Path(
+        file_okay=True, dir_okay=False, allow_dash=True, exists=True
+    ),
+    default="auth.json",
+    help="Path to auth.json token file",
+)
+def daily_summary_feed(db_path, auth):
+    """
+    Save RescueTime Daily Summary Feed.
+    """
+    db = service.open_database(db_path)
+    client = service.get_client(auth)
+
+    service.save_daily_summary_feed(
+        db=db,
+        analytic_data=service.get_daily_summary_feed(client),
+    )
