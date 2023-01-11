@@ -101,5 +101,5 @@ def daily_summary_feed(db_path, auth):
 
     service.save_daily_summary_feed(
         db=db,
-        analytic_data=service.get_daily_summary_feed(client),
+        daily_summary=service.get_daily_summary_feed(client),
     )
