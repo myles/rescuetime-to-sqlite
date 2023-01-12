@@ -1,5 +1,7 @@
-import responses
 import json
+
+import responses
+
 from rescuetime_to_sqlite import cli
 
 from . import fixtures
@@ -7,7 +9,7 @@ from . import fixtures
 
 def test_auth(cli_runner, tmp_path):
     auth_json_path = tmp_path / "auth.json"
-    rescuetime_api_key = 'IAmARescueTimeAPIKey'
+    rescuetime_api_key = "IAmARescueTimeAPIKey"
 
     cli_runner.invoke(cli.auth, f"--auth={auth_json_path}", rescuetime_api_key)
 
